@@ -1,0 +1,15 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+    <div *ngIf="product">
+        <img src="https://via.placeholder.com/150" class="card-img-top" alt="{{ product.name }}">
+      <h2>{{ product.name }}</h2>
+      <p>Price: ${{ product.price }}</p>
+      <button class="btn btn-primary">Add to Cart</button>
+    </div>
+    <div *ngIf="!product">
+      <p>Product not found.</p>
+    </div>
+  </div>
+  </div>
+  </div>
