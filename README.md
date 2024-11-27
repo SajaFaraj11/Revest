@@ -2,6 +2,7 @@ E-commerce Web Application
 Description:
 This repository contains a small e-commerce web application built with Angular on the frontend and Node.js (with PostgreSQL by default) on the backend. The app includes Swagger API documentation for ease of use, and integrates with third-party APIs for payment saleProducts,
 The flexible backend architecture supports easy switching between different database types (e.g., PostgreSQL, MySQL, MongoDB), making the project highly adaptable to different environments. The app simulates a real-world e-commerce platform where users can browse products, add items to their cart, and complete orders, with the option to test API endpoints directly through Swagger.
+
 ///////////////////////
 Features
 Frontend: Built with Angular, the frontend offers a dynamic shopping experience with custom components, routing, and responsive design.
@@ -10,6 +11,7 @@ Database: Integrated with PostgreSQL to store application data, with the ability
 Swagger Integration: The backend API is documented with Swagger, making it easy to understand and test the API endpoints.
 Third-Party API Integration: The application integrates with a third-party API for payment processing and shipping, allowing the project to simulate real-world e-commerce workflows.
 Customizable Database Structure: The backend architecture is flexible and can be easily adapted to work with different database types (PostgreSQL, MySQL, etc.).
+
 ///////////////////////
 
 Installation:
@@ -20,7 +22,8 @@ PostgreSQL installed and running (or any other supported database).
 
 Steps:
 
-Clone the repository:
+Clone the repository: git clone git@github.com:SajaFaraj11/Revest.git
+enter key : revest
 bash
 Copy code
 git clone  
