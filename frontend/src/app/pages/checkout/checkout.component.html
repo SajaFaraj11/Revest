@@ -1,0 +1,64 @@
+<div class="container mt-4">
+    <h2 class="text-center">Checkout</h2>
+    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+        <div class="p-fluid">
+
+             <div class="p-field">
+                <label for="name">Full Name</label>
+                <input id="name" pInputText formControlName="name" class="p-inputtext p-component" />
+                <div *ngIf="checkoutForm.controls['name'].invalid && checkoutForm.controls['name'].touched" class="error">
+                    Full Name is required.
+                </div>
+            </div>
+
+             <div class="p-field">
+                <label for="email">Email</label>
+                <input id="email" pInputText formControlName="email" class="p-inputtext p-component" />
+                <div *ngIf="checkoutForm.controls['email'].invalid && checkoutForm.controls['email'].touched" class="error">
+                    A valid email is required.
+                </div>
+            </div>
+
+             <div class="p-field">
+                <label for="address">Shipping Address</label>
+                <textarea id="address" pInputTextarea formControlName="address" rows="3" class="p-inputtext p-component"></textarea>
+                <div *ngIf="checkoutForm.controls['address'].invalid && checkoutForm.controls['address'].touched" class="error">
+                    Shipping Address is required.
+                </div>
+            </div>
+
+             <div class="p-field">
+                <label for="phone">Phone Number</label>
+                <input id="phone" pInputText formControlName="phone" class="p-inputtext p-component" />
+                <div *ngIf="checkoutForm.controls['phone'].invalid && checkoutForm.controls['phone'].touched" class="error">
+                    A valid phone number is required.
+                </div>
+            </div>
+            <!-- [checked]="checkoutForm.controls['paymentMethod'].value === method.name" -->
+            <div class="p-field">
+                <label for="paymentMethod">Payment Method</label>
+                <div *ngFor="let method of paymentMethods">
+                    <p-radioButton 
+                        name="paymentMethod" 
+                        [value]="method.name" 
+                        label="{{ method.name }}" 
+                        formControlName="paymentMethod" 
+                        >
+                    </p-radioButton>
+                </div>
+                <div *ngIf="checkoutForm.controls['paymentMethod'].invalid && checkoutForm.controls['paymentMethod'].touched" class="error">
+                    Payment Method is required.
+                </div>
+            </div>
+
+             <div class="p-field">
+                <label>Total Amount</label>
+                <p>{{ totalAmount | currency }}</p>
+            </div>
+
+            <div class="text-right">
+                <button pButton type="submit" label="Place Order" [disabled]="checkoutForm.invalid" class="p-button p-component p-button-success">Order</button>
+            </div>
+        </div>
+    </form>
+</div>
