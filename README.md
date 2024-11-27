@@ -49,6 +49,9 @@ bash
 Copy code
 cd backend
 npm install
+bash
+npm run build
+npm run start
 
 PostgreSQL Setup:
 Make sure PostgreSQL is installed and running.
