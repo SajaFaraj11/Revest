@@ -12,7 +12,6 @@ function authenticateJWT(req, res, next) {
     }
     try {
         const decoded = jsonwebtoken_1.default.verify(token, process.env.JWT_SECRET);
-        // req.user = decoded;
         next();
     }
     catch (err) {

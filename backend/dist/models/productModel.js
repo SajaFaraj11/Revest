@@ -57,7 +57,9 @@ const initProductModel = (sequelize) => {
     }, {
         sequelize,
         tableName: 'products',
+        modelName: 'Product',
         timestamps: true,
     });
+    Product.sync();
 };
 exports.initProductModel = initProductModel;

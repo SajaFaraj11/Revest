@@ -8,28 +8,39 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Server = void 0;
 const app_1 = require("./app");
 const config_1 = require("../config/config");
-const postgres_1 = __importDefault(require("../db/postgres"));
-const orderModel_1 = __importDefault(require("../models/orderModel"));
-const productModel_1 = __importDefault(require("../models/productModel"));
+const sequelize_1 = require("sequelize");
+const orderModel_1 = require("../models/orderModel");
+const productModel_1 = require("../models/productModel");
+const productService_1 = require("../services/productService");
+const cors = require('cors');
 class Server {
     static start() {
         return __awaiter(this, void 0, void 0, function* () {
             const appInstance = new app_1.App();
             try {
-                postgres_1.default.models.Product = productModel_1.default;
-                postgres_1.default.models.Order = orderModel_1.default;
-                yield postgres_1.default.authenticate()
+                const sequelize = new sequelize_1.Sequelize(config_1.config.db.postgres.database, config_1.config.db.postgres.user, config_1.config.db.postgres.password, {
+                    host: config_1.config.db.postgres.host,
+                    dialect: 'postgres',
+                    port: 5432,
+                    logging: false,
+                });
+                (0, productModel_1.initProductModel)(sequelize);
+                (0, orderModel_1.initOrderModel)(sequelize);
+                yield sequelize.authenticate()
                     .then(() => {
                     console.log('Database connected!');
-                    postgres_1.default.sync({ force: true })
-                        .then(() => console.log('Database synced successfully'))
+                    sequelize.sync({ force: true })
+                        .then(() => {
+                        console.log('Database synced successfully');
+                        productService_1.ProductService.initializeProducts()
+                            .then(() => {
+                            console.log('Products initialized');
+                        });
+                    })
                         .catch((err) => console.error('Error syncing database:', err));
                 })
                     .catch((err) => console.error('Unable to connect to the database:', err));

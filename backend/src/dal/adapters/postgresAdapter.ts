@@ -10,6 +10,10 @@ export const postgresAdapter: DBAdapter = {
     return await model.findAll();
   },
 
+  async countRecords<T extends object>(model: ModelStatic<Model<T>>) {
+    return await model.count();
+  },
+
   async create<T extends object>(model: ModelStatic<Model<T>>, data: T) {
     return await model.create(data as any);
   },
@@ -25,4 +29,7 @@ export const postgresAdapter: DBAdapter = {
     if (!record) throw new Error(`${model.name} not found`);
     await record.destroy();
   },
+
+
+
 };

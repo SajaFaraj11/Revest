@@ -7,12 +7,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/pages.module').then((m) => m.PagesModule),
   },
- // { path: '', redirectTo: '/pages/home', pathMatch: 'full' },
-  //{ path: '**', redirectTo: '/pages/home' }, // Fallback route
+  { path: '', redirectTo: '/pages/home', pathMatch: 'full' },
+  { path: '**', redirectTo: '/pages/home' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

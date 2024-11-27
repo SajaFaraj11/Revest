@@ -442,7 +442,15 @@ a:focus {
       margin: 5px 0;
     }
 
-    .option1 {
+    .p-button.option1 {
+      
+      display: inline-block;
+      padding: 8px 15px;
+      border-radius: 30px;
+      width: 165px;
+      text-align: center;
+      transition: all .3s;
+      margin: 5px 0;
       background-color: $primary1;
       border: 1px solid $primary1;
       color: $white;
@@ -453,7 +461,7 @@ a:focus {
       }
     }
 
-    .option2 {
+    .p-button.option2 {
       background-color: $black;
       border: 1px solid $black;
       color: $white;

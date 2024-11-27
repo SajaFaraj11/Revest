@@ -53,9 +53,10 @@ const initOrderModel = (sequelize) => {
     }, {
         sequelize,
         tableName: 'orders',
+        modelName: 'Order',
         timestamps: true,
     });
-    // Example of a relation if an order has products
+    Order.sync();
     Order.belongsToMany(productModel_1.default, { through: 'OrderProducts' });
 };
 exports.initOrderModel = initOrderModel;

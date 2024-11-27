@@ -6,8 +6,9 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { CartComponent } from './cart/cart.component';
-import { ProductDetailsComponent } from './product-details/product-details.component';
-import {CarouselModule} from 'primeng/carousel';
+import { SharedModule } from '../shared/shared.module';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { CarouselModule } from 'primeng/carousel';
 
 
 @NgModule({
@@ -17,12 +18,14 @@ import {CarouselModule} from 'primeng/carousel';
     FooterComponent,
     ProductListComponent,
     CartComponent,
-    ProductDetailsComponent
+    CheckoutComponent
+
   ],
   imports: [
-    CarouselModule,
     CommonModule,
-    PagesRoutingModule
-  ]  
+    PagesRoutingModule,
+    SharedModule,
+    CarouselModule
+  ]
 })
 export class PagesModule { }

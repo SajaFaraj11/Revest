@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const productService_1 = require("../services/productService");
 const productController_1 = require("../controllers/productController");
 const router = express_1.default.Router();
 /**
@@ -15,7 +14,7 @@ const router = express_1.default.Router();
  */
 /**
  * @swagger
- * /create/internal:
+ * /api/products/create/internal:
  *   post:
  *     tags:
  *       - Products
@@ -29,20 +28,44 @@ const router = express_1.default.Router();
  *             properties:
  *               name:
  *                 type: string
- *               price:
- *                 type: number
  *               description:
  *                 type: string
+ *               price:
+ *                 type: number
+ *               discount:
+ *                 type: number
+ *                 nullable: true
+ *               stock:
+ *                 type: number
+ *               category:
+ *                 type: string
+ *               brandName:
+ *                 type: string
+ *               imageUrl:
+ *                 type: string
+ *               weight:
+ *                 type: number
+ *                 nullable: true
+ *               isActive:
+ *                 type: boolean
+ *             required:
+ *               - name
+ *               - price
+ *               - stock
+ *               - category
+ *               - brandName
+ *               - imageUrl
+ *               - isActive
  *     responses:
  *       201:
  *         description: Product created successfully
  *       400:
  *         description: Bad request
  */
-router.post('/create/internal', productController_1.ProductController.createProductInternal);
+router.post('/api/products/create/internal', productController_1.ProductController.createProductInternal);
 /**
  * @swagger
- * /:
+ * /api/products:
  *   get:
  *     tags:
  *       - Products
@@ -61,42 +84,37 @@ router.post('/create/internal', productController_1.ProductController.createProd
  *                     type: integer
  *                   name:
  *                     type: string
- *                   price:
- *                     type: number
  *                   description:
  *                     type: string
+ *                   price:
+ *                     type: number
+ *                   discount:
+ *                     type: number
+ *                     nullable: true
+ *                   stock:
+ *                     type: integer
+ *                   category:
+ *                     type: string
+ *                   brandName:
+ *                     type: string
+ *                   imageUrl:
+ *                     type: string
+ *                   weight:
+ *                     type: number
+ *                     nullable: true
+ *                   isActive:
+ *                     type: boolean
+ *                   createdAt:
+ *                     type: string
+ *                     format: date-time
+ *                   updatedAt:
+ *                     type: string
+ *                     format: date-time
  */
-router.get('/', productService_1.ProductService.getAllProducts);
+router.get('/api/products/', productController_1.ProductController.getAllProducts);
 /**
  * @swagger
- * /:
- *   post:
- *     tags:
- *       - Products
- *     description: Creates a new product
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *               price:
- *                 type: number
- *               description:
- *                 type: string
- *     responses:
- *       201:
- *         description: Product created successfully
- *       400:
- *         description: Bad request
- */
-router.post('/', productService_1.ProductService.createProduct);
-/**
- * @swagger
- * /{id}:
+ * /api/products/{id}:
  *   put:
  *     tags:
  *       - Products
@@ -117,10 +135,34 @@ router.post('/', productService_1.ProductService.createProduct);
  *             properties:
  *               name:
  *                 type: string
- *               price:
- *                 type: number
  *               description:
  *                 type: string
+ *               price:
+ *                 type: number
+ *               discount:
+ *                 type: number
+ *                 nullable: true
+ *               stock:
+ *                 type: number
+ *               category:
+ *                 type: string
+ *               brandName:
+ *                 type: string
+ *               imageUrl:
+ *                 type: string
+ *               weight:
+ *                 type: number
+ *                 nullable: true
+ *               isActive:
+ *                 type: boolean
+ *             required:
+ *               - name
+ *               - price
+ *               - stock
+ *               - category
+ *               - brandName
+ *               - imageUrl
+ *               - isActive
  *     responses:
  *       200:
  *         description: Product updated successfully
@@ -129,10 +171,10 @@ router.post('/', productService_1.ProductService.createProduct);
  *       404:
  *         description: Product not found
  */
-router.put('/:id', productService_1.ProductService.updateProduct);
+router.put('/api/products/:id', productController_1.ProductController.updateProduct);
 /**
  * @swagger
- * /{id}:
+ * /api/products/{id}:
  *   delete:
  *     tags:
  *       - Products
@@ -150,4 +192,4 @@ router.put('/:id', productService_1.ProductService.updateProduct);
  *       404:
  *         description: Product not found
  */
-router.delete('/:id', productService_1.ProductService.deleteProduct);
+router.delete('/api/products/:id', productController_1.ProductController.deleteProduct);

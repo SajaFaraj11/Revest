@@ -10,7 +10,6 @@ function authenticateJWT(req: Request, res: Response, next: NextFunction): any {
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as JwtPayload;
-        // req.user = decoded;
         next();
     } catch (err) {
         return res.status(400).json({ message: 'Invalid or expired token.' });

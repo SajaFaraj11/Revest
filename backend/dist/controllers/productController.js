@@ -68,7 +68,7 @@ exports.ProductController = {
                 res.status(204).send();
             }
             catch (err) {
-                next(err); // Pass the error to the next middleware (error handler)
+                next(err);
             }
         });
     },

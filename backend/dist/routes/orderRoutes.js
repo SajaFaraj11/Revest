@@ -4,10 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const orderService_1 = require("../services/orderService");
+const orderController_1 = require("../controllers/orderController");
 const router = express_1.default.Router();
-router.get('/', orderService_1.OrderService.getAllOrders);
-router.post('/', orderService_1.OrderService.createOrder);
-router.put('/:id', orderService_1.OrderService.updateOrder);
-router.delete('/:id', orderService_1.OrderService.deleteOrder);
+router.post('/salesOrder', orderController_1.OrderController.createSalesOrder);
+router.get('/', orderController_1.OrderController.getOrders);
 exports.default = router;

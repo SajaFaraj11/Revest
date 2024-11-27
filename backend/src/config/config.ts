@@ -3,7 +3,7 @@ dotenv.config();
 
 export const config = {
   db: {
-    type: process.env.DB_TYPE || 'postgres', // Change to 'mongo' for MongoDB
+    type: process.env.DB_TYPE || 'postgres',
     postgres: {
       user: process.env.DB_USERNAME || 'postgres',
       host: process.env.DB_HOST || 'localhost',
@@ -11,9 +11,6 @@ export const config = {
       password: process.env.DB_PASSWORD || 'revest',
       port: 5432,
     },
-    //   mongo: {
-    //     uri: 'mongodb://localhost:27017/sales_db',
-    //   },
   },
   port: process.env.PORT || 3000,
 };
@@ -25,15 +22,15 @@ export const swaggerOptions = {
   swaggerDefinition: {
     openapi: '3.0.0', // version
     info: {
-      title: 'My API', // API title
+      title: 'My API',
       version: '1.0.0', // API version
-      description: 'API Documention for E-Commerce ', // API description
+      description: 'API Documention for E-Commerce ',
     },
     servers: [
       {
-        url: 'http://localhost:3000', // API server URL
+        url: 'http://localhost:3000',
       },
     ],
   },
-  apis: ['./src/swagger/product.swagger.ts',], // Path to the API route files
+  apis: ['./src/swagger/product.swagger.ts',],
 };

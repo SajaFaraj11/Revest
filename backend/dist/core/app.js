@@ -13,15 +13,24 @@ const orderRoutes_1 = __importDefault(require("../routes/orderRoutes"));
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 const swagger_jsdoc_1 = __importDefault(require("swagger-jsdoc"));
 const config_1 = require("../config/config");
+const path = require('path');
+const cors = require('cors');
 class App {
     constructor() {
         this.app = (0, express_1.default)();
-        //this.app.use(cors());          
         this.app.use((0, helmet_1.default)());
+        this.app.use(cors());
+        this.app.use(cors({
+            origin: ['http://localhost:4200'],
+            methods: ['GET', 'POST', 'PUT', 'DELETE'],
+            allowedHeaders: ['Content-Type', 'Authorization'],
+            credentials: true,
+        }));
         this.initializeSwagger();
         this.initializeMiddlewares();
         this.initializeRoutes();
         this.initializeErrorHandling();
+        this.serveImages();
     }
     initializeSwagger() {
         const swaggerDocs = (0, swagger_jsdoc_1.default)(config_1.swaggerOptions);
@@ -37,6 +46,9 @@ class App {
     }
     initializeErrorHandling() {
         this.app.use(errorHandler_1.errorHandler);
+    }
+    serveImages() {
+        this.app.use('/images', express_1.default.static(path.join(__dirname, 'assets', 'images')));
     }
 }
 exports.App = App;

@@ -7,7 +7,7 @@ export default class Product extends Model {
   public price!: number;
   public discount!: number | null;
   public stock!: number; // Available inventory
-  public category!: string; 
+  public category!: string;
   public brandName!: string;
   public imageUrl!: string; // Link to product image
   public weight!: number | null; // Weight in kg or grams
@@ -70,7 +70,9 @@ export const initProductModel = (sequelize: Sequelize) => {
     {
       sequelize,
       tableName: 'products',
+      modelName: 'Product',
       timestamps: true,
     }
   );
+  Product.sync();
 };

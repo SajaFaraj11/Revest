@@ -34,5 +34,10 @@ class Repository {
             yield this.dbAdapter.remove(model, id);
         });
     }
+    count(model) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.dbAdapter.countRecords(model);
+        });
+    }
 }
 exports.Repository = Repository;

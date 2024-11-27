@@ -13,62 +13,51 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrderService = void 0;
+const axios_1 = __importDefault(require("axios"));
+const sequelize_1 = require("sequelize");
 const orderModel_1 = __importDefault(require("../models/orderModel"));
-const postgresAdapter_1 = require("../dal/adapters/postgresAdapter");
-const repository_1 = require("../dal/repository/repository");
-const orderRepository = new repository_1.Repository(postgresAdapter_1.postgresAdapter); // Pass the DB adapter
 exports.OrderService = {
-    getAllOrders(req, res, next) {
+    pushSalesOrder(order) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const orders = yield orderRepository.getAll(orderModel_1.default);
-                res.json(orders);
-            }
-            catch (err) {
-                next(err);
-            }
-        });
-    },
-    createOrder(req, res, next) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const { customerName, customerEmail, customerPhone, address, paymentMethod, totalAmount } = req.body;
-                const newOrder = yield orderRepository.create(orderModel_1.default, {
-                    customerName,
-                    customerEmail,
-                    customerPhone,
-                    address,
-                    paymentMethod,
-                    totalAmount,
+                const response = yield axios_1.default.post('https://third-party-api.com/salesOrder', order, {
+                    headers: { 'Content-Type': 'application/json' },
                 });
-                res.status(201).json(newOrder);
+                console.log('Order pushed successfully:', response.data);
             }
             catch (err) {
-                next(err);
+                console.error('Error pushing sales order');
+                throw err;
             }
         });
     },
-    updateOrder(req, res, next) {
+    getOrders(filters) {
         return __awaiter(this, void 0, void 0, function* () {
+            // to do : use repository
             try {
-                const { id } = req.params;
-                const updatedOrder = yield orderRepository.update(orderModel_1.default, Number(id), req.body);
-                res.json(updatedOrder);
+                const where = {};
+                if (filters.name) {
+                    where.customerName = { [sequelize_1.Op.like]: `%${filters.name}%` };
+                }
+                if (filters.email) {
+                    where.customerEmail = { [sequelize_1.Op.like]: `%${filters.email}%` };
+                }
+                if (filters.mobileNumber) {
+                    where.customerMobileNumber = { [sequelize_1.Op.like]: `%${filters.mobileNumber}%` };
+                }
+                if (filters.status) {
+                    where.status = filters.status;
+                }
+                if (filters.orderDate) {
+                    where.orderDate = { [sequelize_1.Op.eq]: filters.orderDate };
+                }
+                const orders = yield orderModel_1.default.findAll({
+                    where,
+                });
+                return orders;
             }
             catch (err) {
-                next(err);
-            }
-        });
-    },
-    deleteOrder(req, res, next) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const { id } = req.params;
-                yield orderRepository.remove(orderModel_1.default, Number(id));
-                res.status(204).send();
-            }
-            catch (err) {
-                next(err);
+                throw err;
             }
         });
     },

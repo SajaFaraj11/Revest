@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  carouselItems:any[] = [
+  carouselItems: any[] = [
     {
       image: 'assets/images/slider-bg.jpg',
       title: 'Sale 20% Off',
@@ -15,10 +15,10 @@ export class HeaderComponent implements OnInit {
       description: 'Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat molestias.'
     },
     {
-      image: 'assets/images/slider-bg.jpg',
+      image: 'assets/images/arrival-bg.jpg',
       title: 'Summer Collection',
       subtitle: 'Shop Now!',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vehicula risus quis enim.'
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vehicula risus enim.'
     },
     {
       image: 'assets/images/slider-bg.jpg',
@@ -27,15 +27,14 @@ export class HeaderComponent implements OnInit {
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel ante eu arcu aliquet fringilla.'
     }
   ];
- 
-  
 
-  constructor() { 
-    
+
+
+  constructor() {
+
   }
-   ngOnInit(): void {
-   
+  ngOnInit(): void {
+
   }
 
 }
- 

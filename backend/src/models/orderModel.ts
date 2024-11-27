@@ -1,6 +1,6 @@
 import { DataTypes, Model, Sequelize } from 'sequelize';
 import Product from './productModel';
-  
+
 export default class Order extends Model {
   public id!: number;
   public customerName!: string;
@@ -62,9 +62,10 @@ export const initOrderModel = (sequelize: Sequelize) => {
     {
       sequelize,
       tableName: 'orders',
-      timestamps: true,  
+      modelName: 'Order',
+      timestamps: true,
     }
   );
-
-   Order.belongsToMany(Product, { through: 'OrderProducts' });
+  Order.sync();
+  Order.belongsToMany(Product, { through: 'OrderProducts' });
 };

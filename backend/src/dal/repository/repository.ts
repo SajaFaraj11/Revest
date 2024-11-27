@@ -1,7 +1,10 @@
 import { DBAdapter } from '../../interfaces/dataAdapterInterface';
 import { ModelStatic, Model } from 'sequelize';
+import Product from '../../models/productModel';
+import { promises } from 'dns';
 
 export class Repository<T extends object> {
+
   private dbAdapter: DBAdapter;
 
   constructor(dbAdapter: DBAdapter) {
@@ -23,4 +26,9 @@ export class Repository<T extends object> {
   async remove(model: ModelStatic<Model<T>>, id: number): Promise<void> {
     await this.dbAdapter.remove(model, id);
   }
+
+  async count(model: ModelStatic<Model<T>>): Promise<number> {
+    return await this.dbAdapter.countRecords(model);
+  }
+
 }

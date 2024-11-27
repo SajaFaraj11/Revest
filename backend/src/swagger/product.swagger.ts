@@ -1,5 +1,4 @@
 import express from 'express';
-import { ProductService } from '../services/productService';
 import { ProductController } from '../controllers/productController';
 import authenticateJWT from '../middleware/authenticateJWT';
 
@@ -12,10 +11,9 @@ const router = express.Router();
  *     description: Operations related to products
  */
 
-
 /**
  * @swagger
- * /create/internal:
+ * /api/products/create/internal:
  *   post:
  *     tags:
  *       - Products
@@ -29,21 +27,45 @@ const router = express.Router();
  *             properties:
  *               name:
  *                 type: string
- *               price:
- *                 type: number
  *               description:
  *                 type: string
+ *               price:
+ *                 type: number
+ *               discount:
+ *                 type: number
+ *                 nullable: true
+ *               stock:
+ *                 type: number
+ *               category:
+ *                 type: string
+ *               brandName:
+ *                 type: string
+ *               imageUrl:
+ *                 type: string
+ *               weight:
+ *                 type: number
+ *                 nullable: true
+ *               isActive:
+ *                 type: boolean
+ *             required:
+ *               - name
+ *               - price
+ *               - stock
+ *               - category
+ *               - brandName
+ *               - imageUrl
+ *               - isActive
  *     responses:
  *       201:
  *         description: Product created successfully
  *       400:
  *         description: Bad request
  */
-router.post('/create/internal', ProductController.createProductInternal);
+router.post('/api/products/create/internal', ProductController.createProductInternal);
 
 /**
  * @swagger
- * /:
+ * /api/products:
  *   get:
  *     tags:
  *       - Products
@@ -62,44 +84,38 @@ router.post('/create/internal', ProductController.createProductInternal);
  *                     type: integer
  *                   name:
  *                     type: string
- *                   price:
- *                     type: number
  *                   description:
  *                     type: string
+ *                   price:
+ *                     type: number
+ *                   discount:
+ *                     type: number
+ *                     nullable: true
+ *                   stock:
+ *                     type: integer
+ *                   category:
+ *                     type: string
+ *                   brandName:
+ *                     type: string
+ *                   imageUrl:
+ *                     type: string
+ *                   weight:
+ *                     type: number
+ *                     nullable: true
+ *                   isActive:
+ *                     type: boolean
+ *                   createdAt:
+ *                     type: string
+ *                     format: date-time
+ *                   updatedAt:
+ *                     type: string
+ *                     format: date-time
  */
-router.get('/', ProductService.getAllProducts);
+router.get('/api/products/', ProductController.getAllProducts);
 
 /**
  * @swagger
- * /:
- *   post:
- *     tags:
- *       - Products
- *     description: Creates a new product
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *               price:
- *                 type: number
- *               description:
- *                 type: string
- *     responses:
- *       201:
- *         description: Product created successfully
- *       400:
- *         description: Bad request
- */
-router.post('/', ProductService.createProduct);
-
-/**
- * @swagger
- * /{id}:
+ * /api/products/{id}:
  *   put:
  *     tags:
  *       - Products
@@ -120,10 +136,34 @@ router.post('/', ProductService.createProduct);
  *             properties:
  *               name:
  *                 type: string
- *               price:
- *                 type: number
  *               description:
  *                 type: string
+ *               price:
+ *                 type: number
+ *               discount:
+ *                 type: number
+ *                 nullable: true
+ *               stock:
+ *                 type: number
+ *               category:
+ *                 type: string
+ *               brandName:
+ *                 type: string
+ *               imageUrl:
+ *                 type: string
+ *               weight:
+ *                 type: number
+ *                 nullable: true
+ *               isActive:
+ *                 type: boolean
+ *             required:
+ *               - name
+ *               - price
+ *               - stock
+ *               - category
+ *               - brandName
+ *               - imageUrl
+ *               - isActive
  *     responses:
  *       200:
  *         description: Product updated successfully
@@ -132,11 +172,11 @@ router.post('/', ProductService.createProduct);
  *       404:
  *         description: Product not found
  */
-router.put('/:id', ProductService.updateProduct);
+router.put('/api/products/:id', ProductController.updateProduct);
 
 /**
  * @swagger
- * /{id}:
+ * /api/products/{id}:
  *   delete:
  *     tags:
  *       - Products
@@ -154,4 +194,4 @@ router.put('/:id', ProductService.updateProduct);
  *       404:
  *         description: Product not found
  */
-router.delete('/:id', ProductService.deleteProduct);
+router.delete('/api/products/:id', ProductController.deleteProduct);

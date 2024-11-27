@@ -16,6 +16,11 @@ exports.postgresAdapter = {
             return yield model.findAll();
         });
     },
+    countRecords(model) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield model.count();
+        });
+    },
     create(model, data) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield model.create(data);
