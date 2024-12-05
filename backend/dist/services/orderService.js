@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrderService = void 0;
 const axios_1 = __importDefault(require("axios"));
 const sequelize_1 = require("sequelize");
-const orderModel_1 = __importDefault(require("../models/orderModel"));
 exports.OrderService = {
     pushSalesOrder(order) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -51,9 +50,10 @@ exports.OrderService = {
                 if (filters.orderDate) {
                     where.orderDate = { [sequelize_1.Op.eq]: filters.orderDate };
                 }
-                const orders = yield orderModel_1.default.findAll({
-                    where,
-                });
+                // const orders = await Order.findAll({
+                //   where,
+                // });
+                const orders = [];
                 return orders;
             }
             catch (err) {

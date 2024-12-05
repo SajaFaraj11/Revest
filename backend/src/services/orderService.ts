@@ -1,10 +1,9 @@
 import axios from 'axios';
 import { Op } from 'sequelize';
-import Order from '../models/orderModel';
 
 export const OrderService = {
 
-  async pushSalesOrder(order: Order) {
+  async pushSalesOrder(order: any) {
     try {
 
       const response = await axios.post('http://localhost:3001/salesOrder', order, {
@@ -43,9 +42,10 @@ export const OrderService = {
         where.orderDate = { [Op.eq]: filters.orderDate };
       }
 
-      const orders = await Order.findAll({
-        where,
-      });
+      // const orders = await Order.findAll({
+      //   where,
+      // });
+      const orders: any[] = [];
 
       return orders;
     } catch (err) {

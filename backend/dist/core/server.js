@@ -13,7 +13,7 @@ exports.Server = void 0;
 const app_1 = require("./app");
 const config_1 = require("../config/config");
 const sequelize_1 = require("sequelize");
-const orderModel_1 = require("../models/orderModel");
+//import { initOrderModel } from '../models/orderModel';
 const productModel_1 = require("../models/productModel");
 const productService_1 = require("../services/productService");
 const cors = require('cors');
@@ -29,7 +29,7 @@ class Server {
                     logging: false,
                 });
                 (0, productModel_1.initProductModel)(sequelize);
-                (0, orderModel_1.initOrderModel)(sequelize);
+                // initOrderModel(sequelize);
                 yield sequelize.authenticate()
                     .then(() => {
                     console.log('Database connected!');
