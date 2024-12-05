@@ -7,12 +7,12 @@ export const OrderService = {
   async pushSalesOrder(order: Order) {
     try {
 
-      const response = await axios.post('https://third-party-api.com/salesOrder', order, {
+      const response = await axios.post('http://localhost:3001/salesOrder', order, {
         headers: { 'Content-Type': 'application/json' },
       });
       console.log('Order pushed successfully:', response.data);
     } catch (err) {
-      console.error('Error pushing sales order');
+      console.error('Error pushing sales order:', err);
       throw err;
     }
   },

@@ -45,7 +45,7 @@ export class App {
 
   private initializeRoutes() {
     this.app.use('/api/products', productRoutes);
-    this.app.use('api/orders', orderRoutes);
+    this.app.use('/api/orders', orderRoutes);
   }
 
   private initializeErrorHandling() {

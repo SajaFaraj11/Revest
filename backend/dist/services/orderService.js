@@ -20,13 +20,13 @@ exports.OrderService = {
     pushSalesOrder(order) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield axios_1.default.post('https://third-party-api.com/salesOrder', order, {
+                const response = yield axios_1.default.post('http://localhost:3001/salesOrder', order, {
                     headers: { 'Content-Type': 'application/json' },
                 });
                 console.log('Order pushed successfully:', response.data);
             }
             catch (err) {
-                console.error('Error pushing sales order');
+                console.error('Error pushing sales order:', err);
                 throw err;
             }
         });
