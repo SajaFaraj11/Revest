@@ -7,7 +7,7 @@ export const config = {
     postgres: {
       user: process.env.DB_USERNAME || 'postgres',
       host: process.env.DB_HOST || 'localhost',
-      database: process.env.DB_DATABASE || 'postgres',
+      database: process.env.DB_DATABASE || 'postgres2',
       password: process.env.DB_PASSWORD || 'revest',
       port: 5432,
     },

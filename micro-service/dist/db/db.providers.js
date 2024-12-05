@@ -13,7 +13,7 @@ exports.databaseProviders = [
                 port: 5432,
                 username: 'postgres',
                 password: 'revest',
-                database: 'postgres',
+                database: 'postgres2',
                 logging: false,
             });
             sequelize.addModels([sales_order_entity_1.SalesOrder]);
