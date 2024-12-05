@@ -42,7 +42,7 @@ export class CheckoutComponent implements OnInit {
     this.paymentMethods = [
       { name: 'Credit Card' },
       { name: 'PayPal' },
-      { name: 'Cash on Delivery' }
+      { name: 'Cash' }
     ];
 
   }
