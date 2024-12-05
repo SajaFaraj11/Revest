@@ -42,6 +42,16 @@ Copy code
 ng serve
 The frontend will be available at http://localhost:4200.
 
+
+# Sales Products Microservice (Nest Js with PostgreSQL)
+Navigate to the micro-service directory and install dependencies: 
+bash
+Copy code
+cd micro-service
+npm install
+bash npm run build
+npm run start
+
 Backend Setup (Node.js with PostgreSQL):
 
 Navigate to the backend directory and install dependencies:
