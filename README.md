@@ -16,7 +16,7 @@ Customizable Database Structure: The backend architecture is flexible and can be
 
 Installation:
 
-Prerequisites
+# Prerequisites
 Node.js and npm installed on your machine.
 PostgreSQL installed and running (or any other supported database).
 
@@ -28,7 +28,7 @@ bash
 Copy code
 git clone  
 cd e-commerce-project
-Frontend Setup (Angular):
+# Frontend Setup (Angular):
 
 Navigate to the frontend directory and install dependencies:
 bash
@@ -52,7 +52,7 @@ npm install
 bash npm run build
 npm run start
 
-Backend Setup (Node.js with PostgreSQL):
+# Backend Setup (Node.js with PostgreSQL):
 
 Navigate to the backend directory and install dependencies:
 bash
@@ -79,7 +79,11 @@ Copy code
 node server.js
 The backend will be available at http://localhost: 3000.
 
-Swagger Documentation:
-
+# Swagger Documentation:
+Backend  Swagger 
 The API documentation is available at http://localhost: 3000/api-docs once the backend server is running. Swagger provides an interactive interface to test API endpoints.
+
+Micro-service  Swagger 
+The API documentation is available at http://localhost: 3001/api  once the Micro-service server is running. Swagger provides an interactive interface to test API endpoints.
+
 The application should now be running with the frontend accessible at http://localhost:4200 and the backend at http://localhost: 3000.
