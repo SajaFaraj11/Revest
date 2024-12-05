@@ -1,7 +1,7 @@
 import { App } from './app';
 import { config } from '../config/config';
 import { Sequelize } from 'sequelize';
-import { initOrderModel } from '../models/orderModel';
+//import { initOrderModel } from '../models/orderModel';
 import { initProductModel } from '../models/productModel';
 import { ProductService } from '../services/productService';
 const cors = require('cors');
@@ -24,7 +24,7 @@ export class Server {
       );
 
       initProductModel(sequelize);
-      initOrderModel(sequelize);
+      // initOrderModel(sequelize);
 
       await sequelize.authenticate()
         .then(() => {

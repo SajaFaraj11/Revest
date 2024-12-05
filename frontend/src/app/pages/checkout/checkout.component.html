@@ -34,8 +34,7 @@
                     A valid phone number is required.
                 </div>
             </div>
-            <!-- [checked]="checkoutForm.controls['paymentMethod'].value === method.name" -->
-            <div class="p-field">
+             <div class="p-field">
                 <label for="paymentMethod">Payment Method</label>
                 <div *ngFor="let method of paymentMethods">
                     <p-radioButton 
@@ -62,3 +61,4 @@
         </div>
     </form>
 </div>
+<p-toast></p-toast>

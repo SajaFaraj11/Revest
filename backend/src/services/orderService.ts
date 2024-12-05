@@ -1,18 +1,17 @@
 import axios from 'axios';
 import { Op } from 'sequelize';
-import Order from '../models/orderModel';
 
 export const OrderService = {
 
-  async pushSalesOrder(order: Order) {
+  async pushSalesOrder(order: any) {
     try {
 
-      const response = await axios.post('https://third-party-api.com/salesOrder', order, {
+      const response = await axios.post('http://localhost:3001/salesOrder', order, {
         headers: { 'Content-Type': 'application/json' },
       });
       console.log('Order pushed successfully:', response.data);
     } catch (err) {
-      console.error('Error pushing sales order');
+      console.error('Error pushing sales order:', err);
       throw err;
     }
   },
@@ -43,9 +42,10 @@ export const OrderService = {
         where.orderDate = { [Op.eq]: filters.orderDate };
       }
 
-      const orders = await Order.findAll({
-        where,
-      });
+      // const orders = await Order.findAll({
+      //   where,
+      // });
+      const orders: any[] = [];
 
       return orders;
     } catch (err) {

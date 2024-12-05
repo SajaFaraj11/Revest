@@ -42,7 +42,7 @@ class App {
     }
     initializeRoutes() {
         this.app.use('/api/products', productRoutes_1.default);
-        this.app.use('api/orders', orderRoutes_1.default);
+        this.app.use('/api/orders', orderRoutes_1.default);
     }
     initializeErrorHandling() {
         this.app.use(errorHandler_1.errorHandler);

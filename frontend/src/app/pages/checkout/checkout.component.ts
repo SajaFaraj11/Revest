@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { CartService } from 'src/app/services/cart.service';
 import { OrderService } from 'src/app/services/order.service';
 
@@ -17,7 +19,9 @@ export class CheckoutComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private cartService: CartService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private messageService: MessageService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -41,27 +45,51 @@ export class CheckoutComponent implements OnInit {
       { name: 'Cash on Delivery' }
     ];
 
-    // this.paymentMethods = [
-    //   { name: 'Credit Card', id: 1 },
-    //   { name: 'PayPal', id: 2 },
-    //   { name: 'Cash on Delivery', id: 2 }
-    // ];
   }
 
   onSubmit() {
     if (this.checkoutForm.valid) {
-      const orderDetails = {
+      const order = {
         customer: this.checkoutForm.value,
         items: this.cartItems,
         totalAmount: this.totalAmount
       };
 
+      const orderDetails = {
+        customerName: order.customer.name,
+        customerEmail: order.customer.email,
+        customerPhone: order.customer.phone,
+        address: order.customer.address,
+        status: "Pending",
+        paymentMethod: order.customer.paymentMethod,
+        paymentStatus: "Paid",
+        totalAmount: order.totalAmount,
+        products: order.items.map(item => ({
+          productId: item.id,
+          quantity: item.quantity
+        }))
+      };
+
       this.orderService.pushSalesOrder(orderDetails).subscribe(
         (response: any) => {
-          console.log('Order placed successfully:', response);
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Order placed successfully!',
+          });
+
+          setTimeout(() => {
+            this.router.navigate(['/home']);
+          }, 1000);
+
         },
+
         (error: any) => {
-          console.error('Error placing order:', error);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'There was an error placing your order.',
+          });
         }
       );
     }
